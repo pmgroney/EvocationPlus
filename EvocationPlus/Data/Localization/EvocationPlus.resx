@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+
+    <data name="EVP_EmperorsWrath_NAME" xml:space="preserve">
+    <value>Emperor's Wrath</value>
+  </data>
+
+    <data name="EVP_EmperorsWrath_DESC" xml:space="preserve">
+    <value>Power! Unlimited Power!  You fry your enemies with a stream of electrical energy You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of fire damage.</value>
+  </data>
+
+    <data name="EVP_FrostBlast_NAME" xml:space="preserve">
+    <value>Frost Blast</value>
+  </data>
+
+    <data name="EVP_FrostBlast_DESC" xml:space="preserve">
+    <value>You blast your enemies with a torrent of cold energy. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of fire damage.</value>
+  </data>
+
+    <data name="EVP_CAUSTIC_BEAM_NAME" xml:space="preserve">
+    <value>Caustic Beam</value>
+  </data>
+
+    <data name="EVP_CAUSTIC_BEAM_DESC" xml:space="preserve">
+    <value>Acid Arrow is as much of a disappointment as you are to your parents, so I present to you: Caustic Beam! You blast your enemies with a ray of acid. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d6 points of acid damage.</value>
+  </data>
+
+    <data name="EVP_BoneSpike_NAME" xml:space="preserve">
+    <value>Bone Spike</value>
+  </data>
+
+    <data name="EVP_BoneSpike_DESC" xml:space="preserve">
+    <value>A spike of bone forms from the other side and mercilessly strikes your target, dealing 1d4+1 points of unholy damage.
+The spike strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
+For every two caster levels beyond 1st, you gain an additional spike – two at 3rd level, three at 5th, four at 7th, and the maximum of five spikes at 9th level or higher.</value>
+  </data>
+    <data name="EVP_ACID_MISSILE_NAME" xml:space="preserve">
+    <value>Acid Missile</value>
+  </data>
+    <data name="EVP_ACID_MISSILE_DESC" xml:space="preserve">
+    <value>A mass of acid forms and violently strikes your target, dealing 1d4+1 points of acid damage.
+The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
+For every two caster levels beyond 1st, you gain an additional missile – two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher.</value>
+  </data>
+    <data name="EVP_FIRE_MISSILE_NAME" xml:space="preserve">
+    <value>Fire Missile</value>
+  </data>
+    <data name="EVP_FIRE_MISSILE_DESC" xml:space="preserve">
+    <value>A blazing bolt of fire forms and violently strikes your target, dealing 1d4+1 points of fire damage.
+The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
+For every two caster levels beyond 1st, you gain an additional missile – two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher.</value>
+  </data>
+
+    <data name="EVP_ELECTRIC_MISSILE_NAME" xml:space="preserve">
+    <value>Electric Missile</value>
+  </data>
+    <data name="EVP_ELECTRIC_MISSILE_DESC" xml:space="preserve">
+    <value>A crackling surge of electricity forms and violently strikes your target, dealing 1d4+1 points of electricity damage.
+The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
+For every two caster levels beyond 1st, you gain an additional missile – two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher.</value>
+  </data>
+
+    <data name="EVP_ICE_MISSILE_NAME" xml:space="preserve">
+    <value>Ice Missile</value>
+  </data>
+    <data name="EVP_ICE_MISSILE_DESC" xml:space="preserve">
+    <value>A shard of freezing ice forms and violently strikes your target, dealing 1d4+1 points of cold damage.
+The missile strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
+For every two caster levels beyond 1st, you gain an additional missile – two at 3rd level, three at 5th, four at 7th, and the maximum of five missiles at 9th level or higher.</value>
+  </data>
+    <data name="EVP_VitriolicBurst_NAME" xml:space="preserve">
+    <value>Vitriolic Burst</value>
+  </data>
+    <data name="EVP_VitriolicBurst_DESC" xml:space="preserve">
+    <value>A vitriolic mass forms in front of you and is sent flying. When it lands the caustic energy explodes and deals 1d6 points of acid damage per caster level (maximum 10d6) to every creature within the area. A successful Reflex save halves this damage.</value>
+  </data>
+
+    <data name="EVP_CorpseExplosion_NAME" xml:space="preserve">
+    <value>Corpse Explosion</value>
+  </data>
+    <data name="EVP_CorpseExplosion_DESC" xml:space="preserve">
+    <value>Recycling is very important to Necromancers. Since the fallen foe or friend no longer needs their body, why not put it to use. This spell causes a corpse to explode with a 15 foot radius, causing d8 unholy energy damage per caster level.</value>
+  </data>
+
+    <data name="EVP_EldritchHorror_NAME" xml:space="preserve">
+    <value>Eldritch Horror</value>
+  </data>
+    <data name="EVP_EldritchHorror_DESC" xml:space="preserve">
+    <value>A small part of a terrifying existence from beyond, creeps from the ground to ensnare and strangle your enemies. Creatures that fail their save are entangled and receive 2d4 unholy damage plus 1d4 for every 2 levels beyond 5th. </value>
+  </data>
+    <data name="EVP_HELL_ON_EARTH_NAME" xml:space="preserve">
+    <value>Hell On Earth</value>
+  </data>
+    <data name="EVP_HELL_ON_EARTH_DESC" xml:space="preserve">
+    <value>You summon Hell itself to assault your enemies. Arms of the dead burst from the ground to ensnare and rip apart your enemies. Creatures that fail their save receive 1d12 unholy damage per caster level.</value>
+  </data>
+    
+    <data name="EVP_NECROMANCER_NAME" xml:space="preserve">
+    <value>Necromancer</value>
+  </data>
+    <data name="EVP_NECROMANCER_DESC" xml:space="preserve">
+    <value>A sorcerer who rejects traditional bloodlines and draws power from death itself.</value>
+  </data>
+
+    <data name="EVP_NECRO_FOCUS_NAME" xml:space="preserve">
+    <value>Necromancer Focus</value>
+  </data>
+    <data name="EVP_NECRO_FOCUS_DESC" xml:space="preserve">
+    <value>Choose which class specific bonus you want.</value>
+  </data>
+
+    <data name="EVP_NECRO_BONE_ARMOR_NAME" xml:space="preserve">
+    <value>Bone Armor</value>
+  </data>
+    <data name="EVP_NECRO_BONE_ARMOR_DESC" xml:space="preserve">
+    <value>Bones surround you and form a defensive layer adding +1 to your AC. You gain an additional +1 every four levels past 1 for a total of +5 at 17th level.</value>
+  </data>
+
+    <data name="EVP_NECRO_BONEARMOR_BONUS_NAME" xml:space="preserve">
+    <value>Bone Armor</value>
+  </data>
+    <data name="EVP_NECRO_BONEARMOR_BONUS_DESC" xml:space="preserve">
+    <value>A silent ward of bone encases you, unseen yet unyielding. Necromantic energies constantly reinforce your form, shaping a skeletal mantle that protects you without effort or command. Grants scaling natural armor. +1 AC at first level and +1 every four levels afterwards.</value>
+  </data>
+
+    <data name="EVP_MASTER_OF_DEATH_NAME" xml:space="preserve">
+    <value>Master of Death</value>
+  </data>
+    <data name="EVP_MASTER_OF_DEATH_DESC" xml:space="preserve">
+    <value>Your natural affinity to the realm of Death provides you with a +1 bonus per die for all Necromancy school spells.</value>
+  </data>
+
+    <data name="EVP_HARBINGER_OF_BOOM_NAME" xml:space="preserve">
+    <value>Harbinger of Boom</value>
+  </data>
+    <data name="EVP_HARBINGER_OF_BOOM_DESC" xml:space="preserve">
+    <value>Your penchant for devastation let's you add your charisma bonus to all Evocation school spells. Unfortunately due to this single-minded focus on kinetic power, you can no longer learn spells from any school besides evocation and conjuration.</value>
+  </data>
+
+    <data name="EVP_UNDEAD_BLOODLINE_NAME" xml:space="preserve">
+    <value>Necromancer Bonus Feats</value>
+  </data>
+    <data name="EVP_UNDEAD_BLOODLINE_DESC" xml:space="preserve">
+    <value>Death answers your call not as a distant mystery, but as a patient ally. The chill of the grave clings to your soul, and the whispers of departed spirits guide your hand. Your magic does not merely mimic decay—it commands it, shaping negative energy into weapon and ward alike. Bonus feats include: Combat Casting, Great Fortitude, Iron Will, Skill Focus - Lore (Religion), Spell Focus, Greater Spell Focus, Toughness, Diehard.</value>
+  </data>
+
+    <data name="EVP_WitheringRay_NAME" xml:space="preserve">
+  <value>Withering Ray</value>
+</data>
+
+    <data name="EVP_WitheringRay_DESC" xml:space="preserve">
+  <value>Starting at 1st level, you can unleash a withering ray as a standard action, targeting any foe within 30 feet as a ranged touch attack. This ray destroys life energy, dealing 1d6 points of negative energy damage + 1d6 for every two sorcerer levels you possess beyond first. You can use this ability a number of times per day equal to 3 + your Charisma modifier. This ability is granted the +1 per die bonus of the Master of Death feature.</value>
+</data>
+
+    <data name="EVP_DeathRay_NAME" xml:space="preserve">
+  <value>Death Ray</value>
+</data>
+    <data name="EVP_DeathRay_DESC" xml:space="preserve">
+  <value>You fire a ray of deathly energy. Make a ranged touch attack. On a hit, the ray deals 4d6 negative energy damage plus an additional ray for every four levels beyond 3rd (to a maximum of 3 rays at 11th level)..</value>
+</data>
+    <data name="EVP_EVOKER_NAME" xml:space="preserve">
+  <value>Evoker</value>
+</data>
+    <data name="EVP_EVOKER_DESC" xml:space="preserve">
+  <value>An Evoker is a living conduit of raw, untamed power, channeling the pure forces of flame, frost, lightning, and acid into devastating spells. Rejecting illusions, enchantments, and subtle arts, he devotes himself entirely to evocation—magic meant to shatter, scorch, and annihilate. Every incantation is honed for maximum impact, turning battlefields into blazing craters and storm-wracked ruins. Where others seek versatility, he seeks only overwhelming destructive supremacy.</value>
+</data>
+    <data name="EVP_EVOKER_BLOODLINE_NAME" xml:space="preserve">
+  <value>Evoker Bloodline</value>
+</data>
+    <data name="EVP_EVOKER_BLOODLINE_DESC" xml:space="preserve">
+  <value>Select an evoker bloodline. Unlike other sorcerers, evokers channel their power through a narrow set of destructive traditions.</value>
+</data>
+    <data name="EVP_EVOKER_ARCANE_NAME" xml:space="preserve">
+    <value>Arcanist</value>
+  </data>
+    <data name="EVP_EVOKER_ARCANE_DESC" xml:space="preserve">
+    <value>Your blood hums with raw arcane resonance. Unlike elemental specialists, you draw upon the fundamental weave itself, shaping pure magical force into devastating expressions of power. Where others command flame or storm, you command magic in its most primal and unrefined form.</value>
+  </data>
+
+    <data name="EVP_EVOKER_AIR_NAME" xml:space="preserve">
+    <value>Stormcaller</value>
+  </data>
+    <data name="EVP_EVOKER_AIR_DESC" xml:space="preserve">
+    <value>The sky answers your call. Lightning dances at your fingertips and thunder rolls in your wake. Swift, untamed, and relentless, your magic strikes like a tempest—sudden as a gale and devastating as a storm that shatters the battlefield in blinding arcs of power.</value>
+  </data>
+
+    <data name="EVP_EVOKER_EARTH_NAME" xml:space="preserve">
+    <value>Vitriomancer</value>
+  </data>
+    <data name="EVP_EVOKER_EARTH_DESC" xml:space="preserve">
+  <value>Your power manifests as virulent acid and caustic corruption, eating through armor, stone, and flesh with terrifying speed. Where others rely on brute force, you dissolve resistance itself—your magic hissing and spitting as it melts defenses into ruin. Swift, corrosive, and merciless, your spells reduce even the strongest opponents to a mere puddle.</value>
+</data>
+
+    <data name="EVP_EVOKER_FIRE_NAME" xml:space="preserve">
+    <value>Pyromancer</value>
+  </data>
+    <data name="EVP_EVOKER_FIRE_DESC" xml:space="preserve">
+    <value>Flame is your birthright. You conjure infernos that consume steel and flesh alike, and your magic burns with unrestrained intensity. Whether as a focused lance of searing heat or a roaring conflagration, your power leaves only ash and cinders in its wake.</value>
+  </data>
+
+    <data name="EVP_EVOKER_WATER_NAME" xml:space="preserve">
+  <value>Rimeguard</value>
+</data>
+
+    <data name="EVP_EVOKER_WATER_DESC" xml:space="preserve">
+  <value>Winter answers your call. Frost gathers along your skin and the air stills in your presence as you command biting cold and relentless ice. Your magic does not crash like a wave—it encases, slows, and preserves in crystal silence before shattering foes in a storm of rime and splintered frost.</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_FIRE_NAME" xml:space="preserve">
+  <value>Pyromancer — Infernal Potency</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_FIRE_DESC" xml:space="preserve">
+  <value>Your flames burn with escalating fury. Your spells that deal fire damage gain +1 damage per die per rank. Ranks increase at levels 1, 5, 9, 13, and 17.</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_WATER_NAME" xml:space="preserve">
+  <value>Rimeguard — Glacial Dominion</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_WATER_DESC" xml:space="preserve">
+  <value>Your mastery of frost deepens with experience. Your spells that deal cold damage gain +1 damage per die per rank. Ranks increase at levels 1, 5, 9, 13, and 17.</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_AIR_NAME" xml:space="preserve">
+  <value>Stormcaller — Tempest Surge</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_AIR_DESC" xml:space="preserve">
+  <value>You channel the growing wrath of the storm. Your spells that deal electricity damage gain +1 damage per die per rank. Ranks increase at levels 1, 5, 9, 13, and 17.</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_EARTH_NAME" xml:space="preserve">
+  <value>Vitriomancer — Corrosive Mastery</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_EARTH_DESC" xml:space="preserve">
+  <value>Your corrosive magic intensifies with each milestone. Your spells that deal acid damage gain +1 damage per die per rank. Ranks increase at levels 1, 5, 9, 13, and 17.</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_ARCANE_NAME" xml:space="preserve">
+  <value>Arcanist — Arcane Supremacy</value>
+</data>
+    <data name="EVP_EVOKER_SCALING_ARCANE_DESC" xml:space="preserve">
+  <value>Your grasp of arcane structure refines your destructive spells. You gain a +2 bonus to the Difficulty Class of your Evocation spells per rank. This bonus stacks with Spell Focus. Ranks increase at levels 1, 5, 9, 13, and 17.</value>
+</data>
+    <data name="EVP_FORCE_BEAM_NAME" xml:space="preserve">
+  <value>Force Beam</value>
+</data>
+    <data name="EVP_FORCE_BEAM_DESC" xml:space="preserve">
+  <value>
+You unleash a concentrated beam of pure arcane force.
+This ray deals 1d4 points of force damage +1 for every 2 sorcerer levels.</value>
+</data>
+    <data name="EVP_FORCE_RAY_NAME" xml:space="preserve">
+  <value>Force Ray</value>
+</data>
+    <data name="EVP_FORCE_RAY_DESC" xml:space="preserve">
+  <value>You blast your enemies with a ray of pure force energy. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d4 points of force damage.</value>
+</data>
+    <data name="EVP_ARCANE_FORCE_BLAST_NAME" xml:space="preserve">
+  <value>Elemental Blast (Force)</value>
+</data>
+    <data name="EVP_ARCANE_FORCE_BLAST_DESC" xml:space="preserve">
+  <value>At 9th level, you can unleash a blast of elemental power once per day. This 20-foot-radius burst does 1d6 points of force damage per sorcerer level. Those caught in the area of your blast receive a Reflex save for half damage. Creatures that fail their saves gain vulnerability to your energy type until the end of your next turn. The DC of this save is equal to 10 + 1/2 your sorcerer level + your Charisma modifier. At 9th level, you can use this ability once per day. At 17th level, you can use this ability twice per day. At 20th level, you can use this ability three times per day. This power has a range of 60 feet.</value>
+</data>
+
+    <data name="EVP_NECRO_FAMILIAR_NAME" xml:space="preserve">
+  <value>Familiar</value>
+</data>
+    <data name="EVP_NECRO_FAMILIAR_DESC" xml:space="preserve">
+  <value>You gain a familiar that functions as an extension of your will. This companion progresses with your sorcerer level.</value>
+</data>
+
+ <data name="EVP_MAXIMUS_NAME" xml:space="preserve">
+  <value>Max</value>
+</data>
+
+<data name="EVP_MAXIMUS_COMPANION_NAME" xml:space="preserve">
+  <value>Sir Maximus</value>
+</data>
+    <data name="EVP_MAXIMUS_COMPANION_DESC" xml:space="preserve">
+  <value>The best kitty ever! I added him in memory of my late cat. He will always remain in our hearts. Only pick this pet if you want excellence, as no other pet can compare to Sir Maximus Griswold Meowerschmidt II.</value>
+</data>
+</root>

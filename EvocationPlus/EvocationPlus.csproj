@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{33B712D6-A1B0-4EEB-B8D3-6FB057A0949F}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>EvocationPlus</RootNamespace>
+        <AssemblyName>EvocationPlus</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="0Harmony">
+          <HintPath>..\References\0Harmony.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\Assembly-CSharp.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.Core">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.Data">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="System.Xml">
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UniRx">
+          <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UniRx.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine">
+            <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+          <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.ImageConversionModule">
+          <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.ImageConversionModule.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityEngine.ParticleSystemModule">
+          <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.ParticleSystemModule.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.UI">
+            <HintPath>E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Kingmaker_Data\Managed\UnityEngine.UI.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="UnityModManager">
+          <HintPath>..\References\UnityModManager.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Archetypes\ArchetypeBuildContext.cs" />
+        <Compile Include="Archetypes\ArchetypeBuilderBase.cs" />
+        <Compile Include="Archetypes\ArchetypeBuildResult.cs" />
+        <Compile Include="Archetypes\ArchetypeDefinition.cs" />
+        <Compile Include="Archetypes\ArchetypeInstaller.cs" />
+        <Compile Include="Archetypes\ArchetypeRegistry.cs" />
+        <Compile Include="Archetypes\BoneArmorInstaller.cs" />
+        <Compile Include="Archetypes\EvokerArcaneDcScaling.cs" />
+        <Compile Include="Archetypes\EvokerArchetypeBuilder.cs" />
+        <Compile Include="Archetypes\EvokerElementalPerDieBonusDamage.cs" />
+        <Compile Include="Archetypes\EvokerElementalScalingInstaller.cs" />
+        <Compile Include="Archetypes\HarbingerOfBoomArcanaClassSpells.cs" />
+        <Compile Include="Archetypes\IArchetypeBuilder.cs" />
+        <Compile Include="Archetypes\MasterOfDeathArcanaClassSpells.cs" />
+        <Compile Include="Archetypes\MaximusCompanionBuilder.cs" />
+        <Compile Include="Archetypes\NecroFamiliarSelectionBuilder.cs" />
+        <Compile Include="Archetypes\NecromancerArchetypeBuilder.cs" />
+        <Compile Include="Archetypes\NecromancerSelectionInstaller.cs" />
+        <Compile Include="BlueprintUtils\BlueprintComponentExtensions.cs" />
+        <Compile Include="BlueprintUtils\BlueprintDumper.cs" />
+        <Compile Include="BlueprintUtils\DeterminatorUtil.cs" />
+        <Compile Include="BlueprintUtils\EnsureHarbingerOfBoomUtil.cs" />
+        <Compile Include="BlueprintUtils\EnsureMasterOfDeathUtil.cs" />
+        <Compile Include="BlueprintUtils\EvocationPlusUnitFactText.cs" />
+        <Compile Include="BlueprintUtils\FastReflection.cs" />
+        <Compile Include="BlueprintUtils\FeatureComponents.cs" />
+        <Compile Include="BlueprintUtils\ProgressionDump.cs" />
+        <Compile Include="BlueprintUtils\ProgressionFinder.cs" />
+        <Compile Include="Classes\AbilityTargetMustBeDead.cs" />
+        <Compile Include="Classes\AllowDeadTargeting.cs" />
+        <Compile Include="Content\Archetypes\ArchetypeModule.cs" />
+        <Compile Include="Content\Fixes\FixesModule.cs" />
+        <Compile Include="Content\Icons\IconModule.cs" />
+        <Compile Include="Content\Spells\SpellModule.cs" />
+        <Compile Include="Core\BlueprintFactory.cs" />
+        <Compile Include="Core\BlueprintGuids.cs" />
+        <Compile Include="Core\ContentFixes.cs" />
+        <Compile Include="Core\Guids.cs" />
+        <Compile Include="Core\IContentModule.cs" />
+        <Compile Include="Core\InstallGuard.cs" />
+        <Compile Include="Core\Log.cs" />
+        <Compile Include="Core\ResourceLoader.cs" />
+        <Compile Include="IconUtils\CopyFromIcon.cs" />
+        <Compile Include="IconUtils\DiskIconLoader.cs" />
+        <Compile Include="IconUtils\FeatureIconSync.cs" />
+        <Compile Include="IconUtils\IconCreator.cs" />
+        <Compile Include="IconUtils\IconStyles.cs" />
+        <Compile Include="IconUtils\IconShader.cs" />
+        <Compile Include="IconUtils\IconTheme.cs" />
+        <Compile Include="IconUtils\IconTintUtil.cs" />
+        <Compile Include="IconUtils\SpellIconRegistry.cs" />
+        <Compile Include="Main.cs" />
+        <Compile Include="Patches\AbilityDamagePatcher.cs" />
+        <Compile Include="Patches\AddPet_TryUpdatePet_TintMaximus_Patch.cs" />
+        <Compile Include="Patches\AllowDeadTargetingComponentBase.cs" />
+        <Compile Include="Patches\AreaEffectScaleFxOnSpawn.cs" />
+        <Compile Include="Patches\Bloodlines\ArcaneBloodlineSpellFeatureFactory.cs" />
+        <Compile Include="Patches\Bloodlines\BloodlineGuids.cs" />
+        <Compile Include="Patches\Bloodlines\BloodlineSelectionReplacer.cs" />
+        <Compile Include="Patches\Bloodlines\NecroBloodlineSpellFeatureFactory.cs" />
+        <Compile Include="Patches\Bloodlines\EvokerBloodlineSelectionInstaller.cs" />
+        <Compile Include="Patches\Bloodlines\EvokerProgressions.cs" />
+        <Compile Include="Patches\Bloodlines\ForceBeamFeatureBuilder.cs" />
+        <Compile Include="Patches\Bloodlines\NecroRayFeatureBuilder.cs" />
+        <Compile Include="Patches\Bloodlines\NecroUndeadProgression.cs" />
+        <Compile Include="Patches\Bloodlines\ProgressionSwapUtil.cs" />
+        <Compile Include="Patches\Bloodlines\SorcererBloodlineFeatSelectionInstaller.cs" />
+        <Compile Include="Patches\BlueprintAbility_CanCastToDeadTarget.cs" />
+        <Compile Include="Patches\ExceptionLoggingEnumerator.cs" />
+        <Compile Include="Patches\LevelUpRecommendationEx_GetRecommendationPriority_Patch.cs" />
+        <Compile Include="Patches\EldritchHorror_AreaFxScale_Patch.cs" />
+        <Compile Include="Patches\EldritchHorror_DealDamageScalingPatch.cs" />
+        <Compile Include="Patches\EnsureAreaDealsBaseDamagePatch.cs" />
+        <Compile Include="Patches\LibraryScriptableObject_LoadDictionary_Patch.cs" />
+        <Compile Include="Patches\LocalizedString_GetText_Patch.cs" />
+        <Compile Include="Patches\LocalizedString_Implicit_Patch.cs" />
+        <Compile Include="Patches\SpellBooks\ArchetypeSpellbookUtil.cs" />
+        <Compile Include="Patches\SpellBooks\EvokerSpellbookInstaller.cs" />
+        <Compile Include="Patches\SpellBooks\EvokerSpellListInstaller.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\AcidMissileModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\BoneSpikeModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\CorspeExplosion.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\DeathRayModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\EldritchHorrorModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\ElectricMissileModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\EmperorsWrathModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\FireMissileModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\ForceRayModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\FrostBlastModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\HellOnEarthModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\IceMissileModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\CausticBeamModifier.cs" />
+        <Compile Include="Spells\Implementation\Modifiers\VitriolicBurstModifier.cs" />
+        <Compile Include="Spells\Implementation\SpawnFx.cs" />
+        <Compile Include="Spells\Implementation\SpellSchoolUtil.cs" />
+        <Compile Include="Spells\Implementation\VfxUtil.cs" />
+        <Compile Include="Spells\Infrastructure\SpellDefinition.cs" />
+        <Compile Include="Spells\Infrastructure\SpellIconApplier.cs" />
+        <Compile Include="Spells\Infrastructure\SpellInstaller.cs" />
+        <Compile Include="Spells\Infrastructure\SpellLists.cs" />
+        <Compile Include="Spells\Infrastructure\SpellRegistry.cs" />
+        <Compile Include="Spells\SpellActionPatcher.cs" />
+        <Compile Include="BlueprintUtils\BlueprintDeepClone.cs" />
+        <Compile Include="BlueprintUtils\BlueprintIsolation.cs" />
+        <Compile Include="BlueprintUtils\BlueprintLibrary.cs" />
+        <Compile Include="BlueprintUtils\BlueprintUnitFactUI.cs" />
+        <Compile Include="Utils\AbilityMutationUtil.cs" />
+        <Compile Include="Utils\ActionListUtil.cs" />
+        <Compile Include="Utils\BloodlineUiGroupUtil.cs" />
+        <Compile Include="Utils\ComponentFactory.cs" />
+        <Compile Include="Utils\ComponentSwap.cs" />
+        <Compile Include="Utils\ContextRankConfigUtil.cs" />
+        <Compile Include="Utils\Localization.cs" />
+        <Compile Include="Utils\LocalizedStringUtil.cs" />
+        <Compile Include="Utils\RecommendationAlwaysBad.cs" />
+        <Compile Include="Utils\ReflectionUtils.cs" />
+        <Compile Include="Utils\ReplaceComponentUtil.cs" />
+        <Compile Include="Utils\UnitFactStringUtils.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Data\Localization\EvocationPlus.sbl" />
+      <Content Include="Icons\arcane_supremacy.png" />
+      <Content Include="Icons\bone_armor.png" />
+      <Content Include="Icons\bone_spike.png" />
+      <EmbeddedResource Include="Icons\corpse_explosion.png" />
+      <EmbeddedResource Include="Icons\eldritch_horror.png" />
+      <EmbeddedResource Include="Icons\vitriolic_blast.png" />
+      <Content Include="Icons\corrosive_mastery.png" />
+      <Content Include="Icons\death_ray.png" />
+      <Content Include="Icons\emperors_wrath.png" />
+      <Content Include="Icons\familiar_leopard.png" />
+      <Content Include="Icons\force_blast.png" />
+      <Content Include="Icons\force_ray_arcane.png" />
+      <Content Include="Icons\glacial_dominion.png" />
+      <Content Include="Icons\harbinger_of_boom.png" />
+      <Content Include="Icons\hell_on_earth.png" />
+      <Content Include="Icons\infernal_potency.png" />
+      <Content Include="Icons\maximus.png" />
+      <Content Include="Icons\max_portrait.png" />
+      <Content Include="Icons\necromancer.png" />
+      <Content Include="Icons\tempest_surge.png" />
+      <Content Include="info.json" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Include="Data\Localization\EvocationPlus.resx" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="packages.config" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+    <Target Name="AfterBuild">
+        <MakeDir Directories="E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\EvocationPlus\"
+                 Condition="!Exists('E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\EvocationPlus\')" />
+
+        <Copy SourceFiles="$(TargetDir)$(TargetFileName)"
+              DestinationFolder="E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\EvocationPlus\"
+              SkipUnchangedFiles="true" />
+    </Target>
+    <PropertyGroup>
+        <PostBuildEvent>
+            set "MODDIR=E:\SteamLibrary\steamapps\common\Pathfinder Kingmaker\Mods\EvocationPlus"
+            set "LOCDIR=%MODDIR%\Data\Localization"
+            set "ICONDIR=%MODDIR%\Icons"
+            set "ASMDIR=%MODDIR%\Assemblies"
+            if not exist "%ASMDIR%" mkdir "%ASMDIR%"
+            if not exist "%MODDIR%" mkdir "%MODDIR%"
+            if not exist "%LOCDIR%" mkdir "%LOCDIR%"
+            if not exist "%ICONDIR%" mkdir "%ICONDIR%"
+
+            copy /Y "$(TargetPath)" "%MODDIR%\"
+            copy /Y "$(MSBuildProjectDirectory)\Info.json" "%MODDIR%\"
+            copy /Y "$(MSBuildProjectDirectory)\Data\Localization\EvocationPlus.resx" "%LOCDIR%\"
+            copy /Y "$(MSBuildProjectDirectory)\Data\Localization\EvocationPlus.sbl" "%LOCDIR%\"
+            xcopy /E /I /Y "$(MSBuildProjectDirectory)\Icons" "%ICONDIR%\"
+            for %%f in ("$(TargetDir)*.dll") do (
+            if /I not "%%~nxf"=="$(TargetFileName)" copy /Y "%%f" "%ASMDIR%\"
+            )
+        </PostBuildEvent>
+    </PropertyGroup>
+</Project>

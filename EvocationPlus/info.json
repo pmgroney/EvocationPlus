@@ -1,0 +1,11 @@
+{
+  "Id": "EvocationPlus",
+  "DisplayName": "Evocation Plus",
+  "Author": "Paul",
+  "Version": "0.1.0",
+  "ManagerVersion": "0.27.0",
+  "AssemblyName": "EvocationPlus.dll",
+  "EntryMethod": "EvocationPlus.Main.Load",
+  "HomePage": "",
+  "Repository": ""
+}
