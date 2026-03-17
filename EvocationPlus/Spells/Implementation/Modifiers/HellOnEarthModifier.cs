@@ -39,6 +39,8 @@ namespace EvocationPlus.Spells.Implementation.Modifiers
             EvocationPlusUnitFactText.SetNameKey(spell, "EVP_HELL_ON_EARTH_NAME");
             EvocationPlusUnitFactText.SetDescriptionKey(spell, "EVP_HELL_ON_EARTH_DESC");
 
+            spell.Range = AbilityRange.Long;
+            
             var sc = spell.GetComponent<SpellComponent>();
             if (sc != null)
                 sc.School = SpellSchool.Necromancy;

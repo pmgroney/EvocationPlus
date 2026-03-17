@@ -33,6 +33,8 @@ namespace EvocationPlus.Spells.Implementation.Modifiers
             // Descriptor: remove Fire, add Death
             SpellSchoolUtil.ReplaceDescriptor(spell, SpellDescriptor.Fire, SpellDescriptor.Death);
 
+            spell.Range = AbilityRange.Long;
+            
             var sc = spell.GetComponent<SpellComponent>();
             if (sc != null)
                 sc.School = SpellSchool.Necromancy;

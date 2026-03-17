@@ -27,6 +27,8 @@ namespace EvocationPlus.Spells.Implementation.Modifiers
             // Descriptor: remove Force, add Death
             SpellSchoolUtil.ReplaceDescriptor(spell, SpellDescriptor.Force, SpellDescriptor.Death);
 
+            spell.Range = AbilityRange.Long;
+            
             // School (simple + safe)
             var sc = spell.GetComponent<SpellComponent>();
             if (sc != null)
