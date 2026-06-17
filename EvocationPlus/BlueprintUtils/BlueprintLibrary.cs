@@ -1,11 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using Kingmaker.Blueprints;
 
 namespace EvocationPlus.BlueprintUtils
 {
     public static class BlueprintLibrary
     {
+        private static readonly FieldInfo AllBlueprintsField = typeof(LibraryScriptableObject).GetField(
+            "m_AllBlueprints",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+
         public static string NormalizeGuid(string s)
         {
             if (string.IsNullOrEmpty(s)) return s;
@@ -40,8 +45,7 @@ namespace EvocationPlus.BlueprintUtils
         }
 
         /// <summary>
-        ///     Registers a blueprint into the Library's authoritative lookup map.
-        ///     Avoids relying on GetAllBlueprints() mutability (often returns a copy/iterator).
+        ///     Registers a blueprint into the Library's lookup map and all-blueprints list.
         ///     Also defensively sets bp.AssetGuid to match the normalized key.
         /// </summary>
         public static void Register(LibraryScriptableObject library, string assetId, BlueprintScriptableObject bp)
@@ -57,7 +61,33 @@ namespace EvocationPlus.BlueprintUtils
 
             // The dictionary is the authoritative registry.
             library.BlueprintsByAssetId[key] = bp;
+
+            RegisterInAllBlueprints(library, key, bp);
         }
+
+        private static void RegisterInAllBlueprints(
+            LibraryScriptableObject library,
+            string assetId,
+            BlueprintScriptableObject bp)
+        {
+            var allBlueprints = AllBlueprintsField?.GetValue(library) as List<BlueprintScriptableObject>;
+            if (allBlueprints == null) return;
+
+            for (var i = 0; i < allBlueprints.Count; i++)
+            {
+                var existing = allBlueprints[i];
+                if (existing == null) continue;
+
+                if (NormalizeGuid(existing.AssetGuid) == assetId)
+                {
+                    allBlueprints[i] = bp;
+                    return;
+                }
+            }
+
+            allBlueprints.Add(bp);
+        }
+
         internal static IEnumerable<BlueprintScriptableObject> GetAllBlueprints()
         {
             // Kingmaker: this is the canonical library root once blueprints are loaded.

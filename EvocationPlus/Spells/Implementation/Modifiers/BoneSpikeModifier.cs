@@ -11,6 +11,7 @@ using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic.Abilities.Blueprints;
 using Kingmaker.UnitLogic.Abilities.Components;
 using Kingmaker.UnitLogic.Mechanics.Actions;
+using Kingmaker.UnitLogic.Mechanics.Components;
 
 namespace EvocationPlus.Spells.Implementation.Modifiers
 {
@@ -28,6 +29,7 @@ namespace EvocationPlus.Spells.Implementation.Modifiers
             SpellSchoolUtil.ReplaceDescriptor(spell, SpellDescriptor.Force, SpellDescriptor.Death);
 
             spell.Range = AbilityRange.Long;
+            IncreaseProjectileScaling(spell);
             
             // School (simple + safe)
             var sc = spell.GetComponent<SpellComponent>();
@@ -50,6 +52,19 @@ namespace EvocationPlus.Spells.Implementation.Modifiers
             var runAction = spell.GetComponent<AbilityEffectRunAction>();
             if (runAction?.Actions != null)
                 ActionListUtil.Patch(runAction.Actions, PatchAction);
+        }
+
+        private static void IncreaseProjectileScaling(BlueprintAbility spell)
+        {
+            var rank = spell.GetComponent<ContextRankConfig>();
+            if (rank == null)
+            {
+                Main.Mod.Logger.Log("BoneSpike: missing ContextRankConfig; projectile scaling was not changed.");
+                return;
+            }
+
+            if (!ContextRankConfigUtil.ForceMinMax(rank, 1, 8))
+                Main.Mod.Logger.Log("BoneSpike: ContextRankConfig field layout mismatch; projectile scaling was not changed.");
         }
 
         private static int PatchAction(GameAction action)
