@@ -61,6 +61,7 @@ namespace EvocationPlus.Core
             public static readonly string HellOnEarth  = "462cb107e84141afa6ac45aeebdbf1bf";
             public static readonly string HellOnEarthFeature  = "f879a75258924ef6a37ef95bb4794c8f";
             public static readonly string HellOnEarthAreaEffectGuid = "9b1a5b53f5a94e0d9a5c8a9cbe4d2b8a";
+            public static readonly string ProtectionFromEnergyCommunalFeature = "00315db9d7bf403fa83b34842e611ab0";
         }
 
         internal static class Features

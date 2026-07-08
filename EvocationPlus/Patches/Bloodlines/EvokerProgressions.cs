@@ -80,6 +80,8 @@ namespace EvocationPlus.Patches.Bloodlines
                 Main.Mod.Logger.Log("Force Blast swap failed!");
             }
 
+            AddProtectionFromEnergyCommunal(library, prog, sorc);
+
             return prog;
         }
 
@@ -97,6 +99,8 @@ namespace EvocationPlus.Patches.Bloodlines
                 BlueprintLibrary.GetBlueprint(library, Guids.Features.SorcererClassGuid) as BlueprintCharacterClass;
             if (prog != null && sorc != null)
                 EvokerElementalScalingInstaller.ApplyAir(library, prog, sorc);
+
+            AddProtectionFromEnergyCommunal(library, prog, sorc);
 
             return prog;
         }
@@ -116,6 +120,8 @@ namespace EvocationPlus.Patches.Bloodlines
             if (prog != null && sorc != null)
                 EvokerElementalScalingInstaller.ApplyEarth(library, prog, sorc);
 
+            AddProtectionFromEnergyCommunal(library, prog, sorc);
+
             return prog;
         }
 
@@ -133,6 +139,8 @@ namespace EvocationPlus.Patches.Bloodlines
                 BlueprintLibrary.GetBlueprint(library, Guids.Features.SorcererClassGuid) as BlueprintCharacterClass;
             if (prog != null && sorc != null)
                 EvokerElementalScalingInstaller.ApplyFire(library, prog, sorc);
+
+            AddProtectionFromEnergyCommunal(library, prog, sorc);
 
             return prog;
         }
@@ -152,7 +160,24 @@ namespace EvocationPlus.Patches.Bloodlines
             if (prog != null && sorc != null)
                 EvokerElementalScalingInstaller.ApplyWater(library, prog, sorc);
 
+            AddProtectionFromEnergyCommunal(library, prog, sorc);
+
             return prog;
+        }
+
+        private static void AddProtectionFromEnergyCommunal(
+            LibraryScriptableObject library,
+            BlueprintProgression prog,
+            BlueprintCharacterClass sorc)
+        {
+            if (prog == null || sorc == null) return;
+
+            var feature = SharedSpellGrantFeatureFactory.EnsureProtectionFromEnergyCommunalSpellFeature(library, sorc);
+            if (feature == null) return;
+
+            AddFeatureAtLevel(prog, feature, 8);
+            NormalizeSpellGrantOrdering(prog);
+            BloodlineUiGroupUtil.NormalizeSpellRow(prog);
         }
 
         private static BlueprintProgression EnsureFromDonor(
@@ -224,6 +249,36 @@ namespace EvocationPlus.Patches.Bloodlines
 
             BlueprintLibrary.Register(library, newGuid, clone);
             return clone;
+        }
+
+        private static void AddFeatureAtLevel(
+            BlueprintProgression prog,
+            BlueprintFeatureBase feature,
+            int level)
+        {
+            if (prog == null || feature == null) return;
+
+            var entries = (prog.LevelEntries ?? new LevelEntry[0]).ToList();
+            var entry = entries.FirstOrDefault(e => e != null && e.Level == level);
+            if (entry == null)
+            {
+                entry = new LevelEntry
+                {
+                    Level = level,
+                    Features = new List<BlueprintFeatureBase>()
+                };
+                entries.Add(entry);
+            }
+
+            if (entry.Features == null)
+                entry.Features = new List<BlueprintFeatureBase>();
+
+            var featureGuid = BlueprintLibrary.NormalizeGuid(feature.AssetGuid);
+            if (entry.Features.Any(f => f != null && BlueprintLibrary.NormalizeGuid(f.AssetGuid) == featureGuid))
+                return;
+
+            entry.Features.Add(feature);
+            prog.LevelEntries = entries.OrderBy(e => e?.Level ?? 0).ToArray();
         }
 
         private static void NormalizeSpellGrantOrdering(BlueprintProgression prog)

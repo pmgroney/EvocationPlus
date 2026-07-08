@@ -2,6 +2,7 @@
 using EvocationPlus.BlueprintUtils;
 using EvocationPlus.Core;
 using EvocationPlus.Utils;
+using HarmonyLib;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Selection;
@@ -177,6 +178,65 @@ namespace EvocationPlus.Patches.Bloodlines
 
             ReflectionUtils.SetFieldAny(rank, new[] { "m_UseMin" }, true);
             ReflectionUtils.SetFieldAny(rank, new[] { "m_Min" }, 1);
+        }
+    }
+
+    [HarmonyPatch(typeof(ContextActionDealDamage), "RunAction")]
+    internal static class NecroRayDamageDiceScalingPatch
+    {
+        private static readonly string NecroRayAbilityGuid =
+            BlueprintLibrary.NormalizeGuid(BloodlineGuids.NewNecroRayAbilityGuid);
+
+        [HarmonyPrefix]
+        private static void Prefix(ContextActionDealDamage __instance)
+        {
+            if (__instance == null) return;
+
+            try
+            {
+                var data = ElementsContext.GetData<MechanicsContext.Data>();
+                var context = data != null ? data.Context : null;
+                if (context == null) return;
+
+                var ability = context.SourceAbility ?? context.AssociatedBlueprint as BlueprintAbility;
+                if (ability == null) return;
+
+                var guid = ability.AssetGuid;
+                if (!string.Equals(guid, NecroRayAbilityGuid, StringComparison.OrdinalIgnoreCase))
+                    return;
+
+                if (__instance.Value == null)
+                    __instance.Value = new ContextDiceValue();
+
+                __instance.Value.DiceType = GetDiceType(GetSorcererLevel(context));
+            }
+            catch (Exception ex)
+            {
+                Main.Mod.Logger.Log("EVP: Necro Ray dice scaling patch failed: " + ex);
+            }
+        }
+
+        private static DiceType GetDiceType(int level)
+        {
+            if (level >= 18) return DiceType.D12;
+            if (level >= 14) return DiceType.D10;
+            if (level >= 8) return DiceType.D8;
+            return DiceType.D6;
+        }
+
+        private static int GetSorcererLevel(MechanicsContext context)
+        {
+            var casterLevel = context.Params != null ? context.Params.CasterLevel : 0;
+            if (casterLevel > 0)
+                return casterLevel;
+
+            var caster = context.MaybeCaster;
+            var descriptor = caster != null ? caster.Descriptor : null;
+            var progression = descriptor != null ? descriptor.Progression : null;
+            if (progression == null) return 0;
+
+            var sorcererClass = BlueprintLibrary.TryGet<BlueprintCharacterClass>(Guids.Features.SorcererClassGuid);
+            return sorcererClass != null ? progression.GetClassLevel(sorcererClass) : 0;
         }
     }
 }

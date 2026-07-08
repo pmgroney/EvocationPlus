@@ -48,7 +48,7 @@
     <data name="EVP_BoneSpike_DESC" xml:space="preserve">
     <value>A spike of bone forms from the other side and mercilessly strikes your target, dealing 1d4+1 points of unholy damage.
 The spike strikes unerringly, even if the target is in melee combat, so long as it has less than total cover or total concealment. Specific parts of a creature can't be singled out. Objects are not damaged by the spell.
-For every two caster levels beyond 1st, you gain an additional spike – two at 3rd level, three at 5th, four at 7th, and the maximum of five spikes at 9th level or higher.</value>
+For every two caster levels beyond 1st, you gain an additional spike – two at 3rd level, three at 5th, four at 7th, and the maximum of eight spikes at 15th level or higher.</value>
   </data>
     <data name="EVP_ACID_MISSILE_NAME" xml:space="preserve">
     <value>Acid Missile</value>
@@ -165,7 +165,7 @@ For every two caster levels beyond 1st, you gain an additional missile – two a
 </data>
 
     <data name="EVP_WitheringRay_DESC" xml:space="preserve">
-  <value>Starting at 1st level, you can unleash a withering ray as a standard action, targeting any foe within 30 feet as a ranged touch attack. This ray destroys life energy, dealing 1d6 points of negative energy damage + 1d6 for every two sorcerer levels you possess beyond first. You can use this ability a number of times per day equal to 3 + your Charisma modifier. This ability is granted the +1 per die bonus of the Master of Death feature.</value>
+  <value>Starting at 1st level, you can unleash a withering ray as a standard action, targeting any foe within 30 feet as a ranged touch attack. This ray destroys life energy, dealing 1 damage die of negative energy damage + 1 damage die for every two sorcerer levels you possess beyond first. The damage die is d6 initially and increases to d8 at 8th level, d10 at 14th level, and d12 at 18th level. You can use this ability a number of times per day equal to 3 + your Charisma modifier. This ability is granted the +1 per die bonus of the Master of Death feature.</value>
 </data>
 
     <data name="EVP_DeathRay_NAME" xml:space="preserve">
@@ -264,6 +264,12 @@ This ray deals 1d4 points of force damage +1 for every 2 sorcerer levels.</value
 </data>
     <data name="EVP_FORCE_RAY_DESC" xml:space="preserve">
   <value>You blast your enemies with a ray of pure force energy. You may fire one ray, plus one additional ray for every four levels beyond 3rd (to a maximum of three rays at 11th level). Each ray requires a ranged touch attack to hit and deals 4d4 points of force damage.</value>
+</data>
+    <data name="EVP_PROTECTION_FROM_ENERGY_COMMUNAL_NAME" xml:space="preserve">
+  <value>Protection from Energy, Communal</value>
+</data>
+    <data name="EVP_PROTECTION_FROM_ENERGY_COMMUNAL_DESC" xml:space="preserve">
+  <value>At 8th level, you add Protection from Energy, Communal to your list of spells known as a 4th-level sorcerer spell.</value>
 </data>
     <data name="EVP_ARCANE_FORCE_BLAST_NAME" xml:space="preserve">
   <value>Elemental Blast (Force)</value>

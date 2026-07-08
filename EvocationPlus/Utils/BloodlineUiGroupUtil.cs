@@ -15,17 +15,40 @@ namespace EvocationPlus.Utils
         internal static void NormalizeSpellRow(BlueprintProgression prog)
         {
             if (prog == null) return;
-            if (prog.UIGroups == null || prog.UIGroups.Length == 0) return;
-
             // Collect spell-grant features in stable progression order (by LevelEntries).
             var spellFeaturesOrdered = GetSpellGrantFeaturesInProgressionOrder(prog);
             if (spellFeaturesOrdered.Count == 0) return;
 
+            if (prog.UIGroups == null || prog.UIGroups.Length == 0)
+            {
+                prog.UIGroups = new[]
+                {
+                    new UIGroup
+                    {
+                        Features = new List<BlueprintFeatureBase>(spellFeaturesOrdered)
+                    }
+                };
+                return;
+            }
+
             // Pick a spells row:
             // Prefer the first UIGroup that already contains any spell-grant features.
-            // Otherwise, fall back to the LAST row.
+            // Otherwise, create a dedicated spell row instead of merging into an unrelated chain.
             var groups = prog.UIGroups;
-            int spellsRowIndex = FindExistingSpellsRowIndex(groups, spellFeaturesOrdered) ?? (groups.Length - 1);
+            var spellsRowIndex = FindExistingSpellsRowIndex(groups, spellFeaturesOrdered);
+            if (!spellsRowIndex.HasValue)
+            {
+                prog.UIGroups = groups
+                    .Concat(new[]
+                    {
+                        new UIGroup
+                        {
+                            Features = new List<BlueprintFeatureBase>(spellFeaturesOrdered)
+                        }
+                    })
+                    .ToArray();
+                return;
+            }
 
             // Remove spell features from ALL rows first (avoid duplicates / split rows).
             for (int gi = 0; gi < groups.Length; gi++)
@@ -37,7 +60,7 @@ namespace EvocationPlus.Utils
             }
 
             // Add them back to the chosen spells row in correct order.
-            var spellsRow = groups[spellsRowIndex];
+            var spellsRow = groups[spellsRowIndex.Value];
             if (spellsRow.Features == null)
                 spellsRow.Features = new List<BlueprintFeatureBase>();
 

@@ -33,12 +33,13 @@ namespace EvocationPlus.Patches.Spellbooks
             clone.name = "EvocationPlus_EvokerSpellList";
             clone.AssetGuid = BlueprintLibrary.NormalizeGuid(BloodlineGuids.EvokerSpellListGuid);
 
-            // Filter spells by school
             if (clone.SpellsByLevel == null || clone.SpellsByLevel.Length == 0)
             {
                 Main.Mod.Logger.Log("EVP: EvokerSpellList: donor list has no SpellsByLevel.");
                 return null;
             }
+
+            clone.SpellsByLevel = CloneSpellsByLevel(donorList.SpellsByLevel);
 
             int removed = 0, kept = 0;
 
@@ -74,6 +75,28 @@ namespace EvocationPlus.Patches.Spellbooks
         private static bool IsAllowedEvokerSchool(SpellSchool school)
         {
             return school == SpellSchool.Evocation || school == SpellSchool.Conjuration;
+        }
+
+        private static SpellLevelList[] CloneSpellsByLevel(SpellLevelList[] source)
+        {
+            if (source == null) return null;
+
+            var clone = new SpellLevelList[source.Length];
+            for (var i = 0; i < source.Length; i++)
+            {
+                var level = source[i];
+                if (level == null) continue;
+
+                clone[i] = new SpellLevelList
+                {
+                    SpellLevel = level.SpellLevel,
+                    Spells = level.Spells != null
+                        ? new List<BlueprintAbility>(level.Spells)
+                        : new List<BlueprintAbility>()
+                };
+            }
+
+            return clone;
         }
     }
 }

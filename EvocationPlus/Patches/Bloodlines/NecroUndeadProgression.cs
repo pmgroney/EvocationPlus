@@ -1,4 +1,7 @@
-﻿using EvocationPlus.BlueprintUtils;
+using System.Collections.Generic;
+using System.Linq;
+using EvocationPlus.BlueprintUtils;
+using EvocationPlus.Utils;
 using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Object = UnityEngine.Object;
@@ -12,7 +15,12 @@ namespace EvocationPlus.Patches.Bloodlines
             BlueprintCharacterClass sorcererClass)
         {
             var existing = BlueprintLibrary.GetBlueprint(library, BloodlineGuids.ClonedNecroProgressionGuid) as BlueprintProgression;
-            if (existing != null) return existing;
+            if (existing != null)
+            {
+                PatchNecroProgression(library, existing, sorcererClass);
+                BloodlineSelectionReplacer.ReplaceBloodlineInSelection(library);
+                return existing;
+            }
 
             var src = BlueprintLibrary.GetBlueprint(library, BloodlineGuids.BaseUndeadProgressionGuid) as BlueprintProgression;
             if (src == null)
@@ -25,15 +33,52 @@ namespace EvocationPlus.Patches.Bloodlines
             clone.name = "EvocationPlus_NecroBloodlineProgression";
             clone.AssetGuid = BlueprintLibrary.NormalizeGuid(BloodlineGuids.ClonedNecroProgressionGuid);
 
+            clone.LevelEntries = src.LevelEntries?
+                .Select(e => new LevelEntry
+                {
+                    Level = e.Level,
+                    Features = e.Features != null
+                        ? new List<BlueprintFeatureBase>(e.Features)
+                        : new List<BlueprintFeatureBase>()
+                })
+                .ToArray();
+
+            clone.UIGroups = src.UIGroups?
+                .Select(g => new UIGroup
+                {
+                    Features = g?.Features != null
+                        ? new List<BlueprintFeatureBase>(g.Features)
+                        : new List<BlueprintFeatureBase>()
+                })
+                .ToArray();
+
+            clone.UIDeterminatorsGroup = src.UIDeterminatorsGroup?.ToArray();
+
             EvocationPlusUnitFactText.SetDescriptionKey(clone, "EVP_UNDEAD_BLOODLINE_DESC");
             EvocationPlusUnitFactText.SetNameKey(clone, "EVP_UNDEAD_BLOODLINE_NAME");
+
+            PatchNecroProgression(library, clone, sorcererClass);
+
+            BlueprintLibrary.Register(library, BloodlineGuids.ClonedNecroProgressionGuid, clone);
+
+            BloodlineSelectionReplacer.ReplaceBloodlineInSelection(library);
+
+            return clone;
+        }
+
+        private static void PatchNecroProgression(
+            LibraryScriptableObject library,
+            BlueprintProgression progression,
+            BlueprintCharacterClass sorcererClass)
+        {
+            if (progression == null) return;
 
             // L3 bloodline spell swap (Cause Fear -> Bone Spike)
             var boneSpikeFeature = NecroBloodlineSpellFeatureFactory.EnsureBoneSpikeBloodlineSpellFeature(library, sorcererClass);
             if (boneSpikeFeature != null)
             {
-                ProgressionSwapUtil.ReplaceInProgression(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel3FeatureGuid, boneSpikeFeature);
-                ProgressionSwapUtil.ReplaceInUiGroups(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel3FeatureGuid, boneSpikeFeature);
+                ProgressionSwapUtil.ReplaceInProgression(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel3FeatureGuid, boneSpikeFeature);
+                ProgressionSwapUtil.ReplaceInUiGroups(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel3FeatureGuid, boneSpikeFeature);
             }
             else
             {
@@ -44,8 +89,8 @@ namespace EvocationPlus.Patches.Bloodlines
             var necroRayFeature = NecroRayFeatureBuilder.EnsureNecroRayFeature(library);
             if (necroRayFeature != null)
             {
-                ProgressionSwapUtil.ReplaceInProgression(clone, BloodlineGuids.DonorGraveTouchFeatureGuid, necroRayFeature);
-                ProgressionSwapUtil.ReplaceInUiGroups(clone, BloodlineGuids.DonorGraveTouchFeatureGuid, necroRayFeature);
+                ProgressionSwapUtil.ReplaceInProgression(progression, BloodlineGuids.DonorGraveTouchFeatureGuid, necroRayFeature);
+                ProgressionSwapUtil.ReplaceInUiGroups(progression, BloodlineGuids.DonorGraveTouchFeatureGuid, necroRayFeature);
             }
             else
             {
@@ -56,31 +101,72 @@ namespace EvocationPlus.Patches.Bloodlines
             var corpseExplosionFeature = NecroBloodlineSpellFeatureFactory.EnsureCorpseExplosionBloodlineSpellFeature(library, sorcererClass);
             if (corpseExplosionFeature != null)
             {
-                ProgressionSwapUtil.ReplaceInProgression(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel5FeatureGuid, corpseExplosionFeature);
-                ProgressionSwapUtil.ReplaceInUiGroups(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel5FeatureGuid, corpseExplosionFeature);
+                ProgressionSwapUtil.ReplaceInProgression(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel5FeatureGuid, corpseExplosionFeature);
+                ProgressionSwapUtil.ReplaceInUiGroups(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel5FeatureGuid, corpseExplosionFeature);
             }
 
             // L7 swap -> Eldritch Horror
             var eldritchHorrorFeature = NecroBloodlineSpellFeatureFactory.EnsureEldritchHorrorBloodlineSpellFeature(library, sorcererClass);
             if (eldritchHorrorFeature != null)
             {
-                ProgressionSwapUtil.ReplaceInProgression(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel7FeatureGuid, eldritchHorrorFeature);
-                ProgressionSwapUtil.ReplaceInUiGroups(clone, BloodlineGuids.DonorUndeadBloodlineSpellLevel7FeatureGuid, eldritchHorrorFeature);
+                ProgressionSwapUtil.ReplaceInProgression(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel7FeatureGuid, eldritchHorrorFeature);
+                ProgressionSwapUtil.ReplaceInUiGroups(progression, BloodlineGuids.DonorUndeadBloodlineSpellLevel7FeatureGuid, eldritchHorrorFeature);
             }
 
             // L19 swap -> Hell on Earth
             var hellOnEarthFeature = NecroBloodlineSpellFeatureFactory.EnsureHellOnEarthBloodlineSpellFeature(library, sorcererClass);
             if (hellOnEarthFeature != null)
             {
-                ProgressionSwapUtil.ReplaceInProgression(clone, BloodlineGuids.DonorArcaneBloodlineSpellLevel19FeatureGuid, hellOnEarthFeature);
-                ProgressionSwapUtil.ReplaceInUiGroups(clone, BloodlineGuids.DonorArcaneBloodlineSpellLevel19FeatureGuid, hellOnEarthFeature);
+                ProgressionSwapUtil.ReplaceInProgression(progression, BloodlineGuids.DonorArcaneBloodlineSpellLevel19FeatureGuid, hellOnEarthFeature);
+                ProgressionSwapUtil.ReplaceInUiGroups(progression, BloodlineGuids.DonorArcaneBloodlineSpellLevel19FeatureGuid, hellOnEarthFeature);
             }
-            
-            BlueprintLibrary.Register(library, BloodlineGuids.ClonedNecroProgressionGuid, clone);
 
-            BloodlineSelectionReplacer.ReplaceBloodlineInSelection(library);
+            AddProtectionFromEnergyCommunal(library, progression, sorcererClass);
+            BloodlineUiGroupUtil.NormalizeSpellRow(progression);
+        }
 
-            return clone;
+        private static void AddProtectionFromEnergyCommunal(
+            LibraryScriptableObject library,
+            BlueprintProgression progression,
+            BlueprintCharacterClass sorcererClass)
+        {
+            if (progression == null || sorcererClass == null) return;
+
+            var feature =
+                SharedSpellGrantFeatureFactory.EnsureProtectionFromEnergyCommunalSpellFeature(library, sorcererClass);
+            if (feature == null) return;
+
+            AddFeatureAtLevel(progression, feature, 8);
+        }
+
+        private static void AddFeatureAtLevel(
+            BlueprintProgression progression,
+            BlueprintFeatureBase feature,
+            int level)
+        {
+            if (progression == null || feature == null) return;
+
+            var entries = (progression.LevelEntries ?? new LevelEntry[0]).ToList();
+            var entry = entries.FirstOrDefault(e => e != null && e.Level == level);
+            if (entry == null)
+            {
+                entry = new LevelEntry
+                {
+                    Level = level,
+                    Features = new List<BlueprintFeatureBase>()
+                };
+                entries.Add(entry);
+            }
+
+            if (entry.Features == null)
+                entry.Features = new List<BlueprintFeatureBase>();
+
+            var featureGuid = BlueprintLibrary.NormalizeGuid(feature.AssetGuid);
+            if (entry.Features.Any(f => f != null && BlueprintLibrary.NormalizeGuid(f.AssetGuid) == featureGuid))
+                return;
+
+            entry.Features.Add(feature);
+            progression.LevelEntries = entries.OrderBy(e => e?.Level ?? 0).ToArray();
         }
     }
 }

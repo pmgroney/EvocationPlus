@@ -62,7 +62,6 @@ namespace EvocationPlus.Archetypes
             if (familiarSel == null)
                 Main.Mod.Logger.Log("EVP: Familiar selection not created; skipping.");
             
-            
             return new ArchetypeBuildResult
             {
                 RemoveFeatures = new[]
