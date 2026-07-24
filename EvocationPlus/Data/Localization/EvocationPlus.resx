@@ -143,7 +143,7 @@ For every two caster levels beyond 1st, you gain an additional missile – two a
     <value>Master of Death</value>
   </data>
     <data name="EVP_MASTER_OF_DEATH_DESC" xml:space="preserve">
-    <value>Your natural affinity to the realm of Death provides you with a +1 bonus per die for all Necromancy school spells.</value>
+    <value>Your natural affinity to the realm of Death grows with your power. Necromancy school spells gain +1 damage per die, a +2 bonus per die at 9th level and increasing to a +3 bonus per die at 17th level.</value>
   </data>
 
     <data name="EVP_HARBINGER_OF_BOOM_NAME" xml:space="preserve">

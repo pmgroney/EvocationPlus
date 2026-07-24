@@ -169,7 +169,6 @@ namespace EvocationPlus.Archetypes
 
             // Add ONLY your logic component(s)
             var comp = ScriptableObject.CreateInstance<EvokerElementalPerDieBonusDamage>();
-            comp.classes = new[] { sorcererClass };
             comp.EnergyType = energyType;
 
             f.ComponentsArray = new BlueprintComponent[] { comp };
@@ -211,7 +210,6 @@ namespace EvocationPlus.Archetypes
 
             // Add ONLY your logic component(s)
             var comp = ScriptableObject.CreateInstance<EvokerArcaneDcScaling>();
-            comp.classes = new[] { sorcererClass };
 
             f.ComponentsArray = new BlueprintComponent[] { comp };
 

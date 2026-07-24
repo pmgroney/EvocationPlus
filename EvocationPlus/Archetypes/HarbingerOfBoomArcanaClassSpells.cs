@@ -1,13 +1,11 @@
 ﻿using System.Linq;
 using Kingmaker.Blueprints;
-using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
 using Kingmaker.UnitLogic.Mechanics;
 using Kingmaker.EntitySystem.Stats;
-using UnityEngine.Serialization;
 
 namespace EvocationPlus.Archetypes
 {
@@ -15,9 +13,6 @@ namespace EvocationPlus.Archetypes
         OwnedGameLogicComponent<UnitDescriptor>,
         IInitiatorRulebookHandler<RuleCalculateDamage>
     {
-        [FormerlySerializedAs("Classes")]
-        public BlueprintCharacterClass[] classes;
-
         public void OnEventAboutToTrigger(RuleCalculateDamage evt)
         {
             var context = evt.Reason.Context;
@@ -28,26 +23,6 @@ namespace EvocationPlus.Archetypes
 
             // Must be Evocation school
             if (context.SourceAbility.School != SpellSchool.Evocation)
-                return;
-
-            // Must be coming from one of the allowed class spellbooks
-            var spellbook = context.SourceAbilityContext?.Ability?.Spellbook;
-            if (spellbook == null)
-                return;
-
-            var classSpellbook = MasterOfDeathArcanaClassSpells.GetClassSpellbook(spellbook, Owner);
-
-            var ok = false;
-            foreach (var characterClass in classes)
-            {
-                if (Owner.GetSpellbook(characterClass) == classSpellbook)
-                {
-                    ok = true;
-                    break;
-                }
-            }
-
-            if (!ok)
                 return;
 
             // Add CHA bonus to total damage (per damage instance in bundle)

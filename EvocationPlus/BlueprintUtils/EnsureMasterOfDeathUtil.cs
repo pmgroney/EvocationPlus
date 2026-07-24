@@ -53,8 +53,7 @@ namespace EvocationPlus.BlueprintUtils
                 BlueprintUnitFactUI.SetIcon(f, icon);
 
 
-            var comp = f.AddComponent<MasterOfDeathArcanaClassSpells>();
-            comp.classes = new[] { parent };
+            f.AddComponent<MasterOfDeathArcanaClassSpells>();
 
             BlueprintLibrary.Register(library, Guids.BlueprintGuids.MasterOfDeathGuid, f);
             return f;

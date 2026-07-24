@@ -1,10 +1,13 @@
-﻿using Kingmaker.Blueprints;
+﻿using EvocationPlus.BlueprintUtils;
+using EvocationPlus.Core;
+using Kingmaker.Blueprints;
 using Kingmaker.Blueprints.Classes;
 using Kingmaker.Blueprints.Classes.Spells;
+using EvocationPlus.Patches.Bloodlines;
 using Kingmaker.PubSubSystem;
 using Kingmaker.RuleSystem.Rules.Damage;
 using Kingmaker.UnitLogic;
-using UnityEngine.Serialization;
+using Kingmaker.UnitLogic.Mechanics;
 
 namespace EvocationPlus.Archetypes
 {
@@ -14,59 +17,53 @@ namespace EvocationPlus.Archetypes
         IRulebookHandler<RuleCalculateDamage>,
         IInitiatorRulebookSubscriber
     {
-        // Which base classes' spellbooks should qualify (e.g., Sorcerer only)
-        [FormerlySerializedAs("Classes")] public BlueprintCharacterClass[] classes;
+        private static readonly string WitheringRayAbilityGuid =
+            BlueprintLibrary.NormalizeGuid(BloodlineGuids.NewNecroRayAbilityGuid);
 
         public void OnEventAboutToTrigger(RuleCalculateDamage evt)
         {
             var context = evt.Reason.Context;
 
-            // Must be a spell ability
-            if (context?.SourceAbility == null || !context.SourceAbility.IsSpell)
+            if (context?.SourceAbility == null)
                 return;
 
-            // Must be Necromancy school
-            if (context.SourceAbility.School != SpellSchool.Necromancy)
+            if (!IsQualifiedNecromancySpell(context) && !IsWitheringRay(context.SourceAbility.AssetGuid))
                 return;
 
-            // Must be coming from one of the allowed class spellbooks
-            var spellbook = context.SourceAbilityContext?.Ability?.Spellbook;
-            if (spellbook == null)
-                return;
+            var bonusPerDie = GetBonusPerDie(GetSorcererLevel());
 
-            var classSpellbook = GetClassSpellbook(spellbook, Owner);
-
-            var ok = false;
-            foreach (var characterClass in classes)
-                if (Owner.GetSpellbook(characterClass) == classSpellbook)
-                {
-                    ok = true;
-                    break;
-                }
-
-            if (!ok)
-                return;
-
-            // +1 damage per die 
             foreach (var baseDamage in evt.DamageBundle)
-                baseDamage.AddBonus(baseDamage.Dice.Rolls);
+                baseDamage.AddBonus(baseDamage.Dice.Rolls * bonusPerDie);
+        }
+
+        private static int GetBonusPerDie(int sorcererLevel)
+        {
+            if (sorcererLevel >= 17) return 3;
+            if (sorcererLevel >= 9) return 2;
+            return 1;
+        }
+
+        private int GetSorcererLevel()
+        {
+            var sorcererClass = BlueprintLibrary.TryGet<BlueprintCharacterClass>(Guids.Features.SorcererClassGuid);
+            return sorcererClass != null ? Owner.Progression.GetClassLevel(sorcererClass) : 0;
+        }
+
+        private bool IsQualifiedNecromancySpell(MechanicsContext context)
+        {
+            if (!context.SourceAbility.IsSpell)
+                return false;
+
+            return context.SourceAbility.School == SpellSchool.Necromancy;
+        }
+
+        private static bool IsWitheringRay(string guid)
+        {
+            return string.Equals(guid, WitheringRayAbilityGuid, System.StringComparison.OrdinalIgnoreCase);
         }
 
         public void OnEventDidTrigger(RuleCalculateDamage evt)
         {
         }
-
-        public static Spellbook GetClassSpellbook(Spellbook spellbook, UnitDescriptor unit)
-        {
-            var spellbook1 = spellbook != null
-                ? spellbook.Blueprint.GetComponent<GetKnownSpellsFromMemorizationSpellbook>()?.spellbook
-                : null;
-            return spellbook1 != null ? unit.GetSpellbook(spellbook1) : spellbook;
-        }
-    }
-
-    public class GetKnownSpellsFromMemorizationSpellbook : BlueprintComponent
-    {
-        public BlueprintSpellbook spellbook;
     }
 }

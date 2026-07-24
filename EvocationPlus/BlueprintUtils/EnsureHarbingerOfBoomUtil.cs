@@ -48,8 +48,7 @@ namespace EvocationPlus.BlueprintUtils
                 BlueprintUnitFactUI.SetIcon(f, icon);
 
             // ✅ Behavior component (Evocation + CHA once per spell total)
-            var comp = f.AddComponent<HarbingerOfBoomArcanaClassSpells>();
-            comp.classes = new[] { parentClass };
+            f.AddComponent<HarbingerOfBoomArcanaClassSpells>();
 
             BlueprintLibrary.Register(library, Guids.BlueprintGuids.HarbingerOfBoomGuid, f);
             return f;
